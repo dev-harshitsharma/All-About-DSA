@@ -1,0 +1,31 @@
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int printNoSubSequence(int index,int s, int sum , int arr[],int n){
+    if(index ==n){
+        if(s==sum) return 1;
+        else return 0;
+    }
+    
+    s += arr[index];
+    //take call left 
+    int left = printNoSubSequence(index+1,s,sum,arr,n);
+    
+    s-= arr[index];
+    //not take call - left
+    int right = printNoSubSequence(index+1,s,sum,arr,n);
+    
+    return left+right;
+}
+
+int main() {
+    // Write C++ code here
+    int arr[] ={1,2,1};
+    
+    int n =3 ;
+    int sum =2 ;
+    cout << printNoSubSequence(0,0,sum,arr,n);
+
+    return 0;
+}
